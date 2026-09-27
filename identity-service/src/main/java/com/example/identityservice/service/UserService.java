@@ -50,7 +50,7 @@ public class UserService {
         }
 
         // Sinh ra JWT token nếu hợp lệ
-        String token = jwtUtil.generateToken(user);
+        String token = jwtUtil.generateAccessToken(user);
         return new LoginResponse(token);
     }
 
@@ -58,6 +58,6 @@ public class UserService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found with username: " + username));
 
-        return jwtUtil.generateToken(user);
+        return jwtUtil.generateAccessToken(user);
     }
 }
